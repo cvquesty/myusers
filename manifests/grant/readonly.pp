@@ -14,7 +14,6 @@ $location,    # Location from which user being granted permissions (localhost, *
   exec { 'create_admin_user':
     onlyif  => "/usr/bin/mysqladmin -u ${user} -p ${password} status",
     command => "/usr/bin/mysqladmin -u ${dbauth} -p ${dbauthpw} -e \"GRANT SELECT ON ${database}.* TO \'${user}\'@\'${location}\' IDENTIFIED BY ${password}; flush privileges;\"",
-    require => User[ $user ],
   }
 
 }
