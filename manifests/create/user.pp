@@ -7,8 +7,6 @@ define  myusers::create::user (
 
 ) {
 
-  include [ 'mysql' ]
-
   mysql_user { "\'${user}\'@\'${system}\'":
     ensure => 'present',
   }
