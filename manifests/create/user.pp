@@ -2,13 +2,18 @@
 #
 define  myusers::create::user (
 
+  $dbauth,
+  $dbauthpw,
   $user,
+  $password,
+  $database,
+  $location,
   $system,
 
 ) {
 
-  mysql_user { "\'${user}\'@\'${system}\'":
-    ensure => 'present',
+  exec { 'create_user':
+    command => "/usr/bin/mysqladmin -u ${dbauth} -p ${dbauthpw} -e \"CREATE USER ${user} ON ${database}.*\"",
   }
 
 }
